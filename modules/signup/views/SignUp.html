@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <style></style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="loginpage" class="row ">
+            <div ng-show="isSignupActive">
+                <div class="col-md-10 col-sm-11 col-lg-6 col-xs-12 modal-header col-centered whitebg ">
+                    <div class="row margin-content">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12  ">
+                            <div align="center" class="logoimg"><img src="images/logo_u25.png" alt="logoimg" /> </div>
+                            <div class="col-md-12">
+                                <h1> NEW ACCOUNT</h1>
+                                <p>
+                                    Please provide the information requested below to set up a credit account with EDR. We will get an account set up for you within the next business
+                                    day—usually sooner.
+                                </p>
+                                <h3> COMPANY INFORMATION </h3>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="form-group">
+                                <form id="registerForm" name="registerForm" novalidate rc-submit="btnSignup(registerForm)">
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12  form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.companyname)}">
+                                        <input type="text" class="form-control" id="companyname" name="companyname" data-ng-model="companyname" value="" required placeholder="Company Name">
+
+                                        <span class="help-block" ng-show="registerForm.companyname.$error.required ">Company name is required.</span>
+
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 form-group">
+
+                                        <industry-ctrl ng-model="industryValue"></industry-ctrl>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.FirstName)}">
+
+                                        <input type="text" class="form-control" id="FirstName" name="FirstName" data-ng-model="firstname" value="" required data-ng-pattern="/^[a-zA-Z]*$/" placeholder="First Name" title="First Name">
+                                        <span class="help-block" ng-show="registerForm.FirstName.$error.required ">Company name is required.</span>
+                                        <span class="help-block" ng-show="registerForm.FirstName.$error.pattern ">Invalid name.</span>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.lastName)}">
+
+                                        <input type="text" class="form-control" id="LastName" name="lastName" data-ng-model="lastname" data-ng-pattern="/^[a-zA-Z]*$/" value="" required placeholder="Last Name" title="Last Name">
+                                        <span class="help-block" ng-show="registerForm.lastName.$error.required && registerForm.lastName.$dirty">Last Name is required.</span>
+                                        <span class="help-block" ng-show="registerForm.lastName.$error.pattern ">Invalid name.</span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.Address)}">
+
+                                        <input type="text" class="form-control" id="Address" name="Address" value="" data-ng-model="address" required placeholder="Address (billing)" title="Address (billing)">
+                                        <span class="help-block" ng-show="registerForm.Address.$error.required">Address is required.</span>
+
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 form-group">
+
+                                        <input type="text" class="form-control" id="Suite" name="Suite" data-ng-model="suit" value="" required placeholder="Suite / Floor / Unit" title="Suite / Floor / Unit">
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.zipcode)}">
+
+                                        <zip-ctrl ng-model="zipcode"> </zip-ctrl>
+                                        <!--<span class="help-block" ng-show="registerForm.zipcode.$error.required">Zip code is required.</span>-->
+                                        <span class="help-block" ng-show="registerForm.zipcode.$error.pattern ">Only 5 digit allowed.</span>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.City)}">
+
+                                        <input type="text" class="form-control" id="City" name="City" data-ng-model="city" value="" ng-pattern="/^[a-zA-Z]*$/" placeholder="City" title="City">
+                                        <span class="help-block" ng-show="registerForm.City.$error.pattern ">Invalid city name.</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-lg-4 col-xs-12 form-group">
+
+                                        <state-ctrl ng-model="stateValue"></state-ctrl>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h3> USER INFORMATION</h3>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.email)}">
+
+
+                                        <email-ctrl> </email-ctrl>
+                                        <span class="help-block" ng-show="registerForm.email.$error.required">The user's email is required</span>
+                                        <span class="help-block" ng-show="registerForm.email.$error.email">The email address is invalid</span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.reemail)}">
+
+
+                                        <retype-email-ctrl> </retype-email-ctrl>
+                                        <span class="help-block" ng-show="registerForm.reemail.$error.required">The user's email is required</span>
+                                        <span class="help-block" ng-show="registerForm.reemail.$error.noMatch && !registerForm.reemail.$error.required">Email address dont match</span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.password)}">
+
+
+                                        <password-ctrl> </password-ctrl>
+                                        <span class="help-block" ng-show="registerForm.password.$error.required">Password can not be blank</span>
+                                        <span class="help-block" ng-show="registerForm.password.$error.pattern">Password should contain atleast one Uppercase and one lowercase letter</span>
+
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group" ng-class="{'has-error': rc.registerForm.needsAttention(registerForm.repassname)}">
+                                        <retype-password-ctrl> </retype-password-ctrl>
+                                        <span class="help-block" ng-show="registerForm.repassname.$error.required">Password can not be blank</span>
+                                        <span class="help-block" ng-show="registerForm.repassname.$error.noMatch  && !registerForm.repassname.$error.required">Passwords do not match.</span>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-lg-8 col-xs-12 form-group">
+                                        <!--<img src="images/recaptcha_u64.png" alt="captcha" />-->
+                                        <div re-captcha ng-model="captcha"></div>
+                                        <span class="help-block" ng-show="isActive" style="color:red">Invalid captcha code, Please try another code.</span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div align="center" class="col-md-offset-2 ">
+                                        <div class="col-md-5  col-sm-5 col-lg-5 col-xs-12 form-group">
+
+                                            <button type="button" class="btn btn-default btn-block" ng-click="btnCancel()">CANCEL</button>
+                                        </div>
+                                        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-12 form-group">
+
+                                            <button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- footer -->
+                            <div class="clearfix"></div>
+                            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2  top-margin">
+                                <div class="row vdivide">
+                                    <ul class="list-unstyled ">
+                                        <li class="sub text-center "><a href=""> Home </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href=""> Privacy Policy </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href="">Terms & Conditions </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href="">Contact Us </a></li>
+                                    </ul><div class="clearfix"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="text-center vdivide text-gray"> © EDR 2015 </div>
+                            <!-- footer end -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-show="isThanksActive">
+                <div class="col-md-10 col-sm-11 col-lg-6 col-xs-12 modal-header col-centered whitebg ">
+                    <div class="row margin-content">
+                        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12  ">
+                            <div align="center" class="logoimg"><img src="images/logo_u25.png" alt="logoimg" /> </div>
+                            <div class="col-md-12">
+                                <h1>Thanks!</h1>
+                                <p>
+                                    Thank you for requesting a credit account with EDR. A customer care representative will set up your new account. Please take a moment to review the information below, and call 800.352.0050 if you see a mistake.
+                                </p>
+
+                            </div>
+                            <div class="col-md-12">
+                                <h1>Check your email!</h1>
+                                <p>
+                                    We sent you an email to verify your address. Please follow the instructions in the email to complete the verification. If you don't see the email, be sure to check your junk and spam folders.
+                                    <br>
+                                    If you still can't find it, click here to resend the email.
+                                </p>
+
+                            </div>
+                            <div class="col-md-12">
+                                <h3>COMPANY INFORMATION</h3>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding   text-right"><strong>Company Name:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp;{{companyname}} </span>  <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>Industry:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8  nopadding text-left">&nbsp; {{industryValue.name}} </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>Name:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp; {{firstname +' '+ lastname}} </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>Address:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8  nopadding text-left">&nbsp; {{address}} </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding text-right"><strong>Suite/Floor/Unit:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp; {{suit}} </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"> <strong>City, State, ZIP:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp; {{city +', ' + stateValue.name +', ' + zipcode}}</span>
+                            </div>
+                            <div class="col-md-12">
+                                <h3>USER INFORMATION</h3>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding   text-right"><strong>Name:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp; {{firstname +' '+ lastname}} </span>  <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>User Name:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8  nopadding text-left">&nbsp; bailery </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>Email Address::</strong> </span><span class="col-md-8 col-sm-8 col-lg-8 nopadding  text-left">&nbsp; {{useremail}} (verified) </span> <br>
+                                <span class="col-md-3 col-sm-3 col-lg-3 nopadding  text-right"><strong>Customer Phone:</strong> </span><span class="col-md-8 col-sm-8 col-lg-8  nopadding text-left">&nbsp; (518) 860-1402 </span> <br>
+                            </div>
+                            <div class="clearfix"> </div>
+                            <div class="col-md-12 top-margin text-center">
+                                <button class="btn btn-md btn-primary" ng-click="btnDone()"> DONE </button>
+                            </div>
+
+
+                            <!-- footer -->
+                            <div class="clearfix"></div>
+                            <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2  top-margin">
+                                <div class="row vdivide">
+                                    <ul class="list-unstyled text-gray ">
+                                        <li class="sub text-center "><a href=""> Home </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href=""> Privacy Policy </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href="">Terms & Conditions </a></li>
+                                        <li> | </li>
+                                        <li class="sub text-center"><a href="">Contact Us </a></li>
+                                    </ul><div class="clearfix"></div>
+
+                                </div>
+
+                            </div>
+                            <div class="text-center vdivide text-gray"> © EDR 2015 </div>
+                            <!-- footer end -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+
+</html>
