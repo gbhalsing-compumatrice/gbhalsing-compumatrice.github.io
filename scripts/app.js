@@ -130,7 +130,7 @@ angular.module('EDRLightbox').directive('stateCtrl', ['$http', '$rootScope', fun
         },
         templateUrl: 'components/stateControl.html',
         link: function ($scope) {
-            $http.get('json/states.js').success(function (data) {
+            $http.get('http://gbhalsing-compumatrice.github.io/json/states.js').success(function (data) {
                 $scope.States = data;
                 console.log("sss " + data);
             });
@@ -146,7 +146,7 @@ angular.module('EDRLightbox').directive('industryCtrl', ['$http', '$rootScope', 
         },
         templateUrl: 'components/industry_ddControl.html',
         link: function ($scope) {
-            $http.get('json/industry.js').success(function (data) {
+            $http.get('http://gbhalsing-compumatrice.github.io/json/industry.js').success(function (data) {
                 $scope.Industry = data;
                 console.log("sss " + data);
             });
@@ -166,7 +166,7 @@ angular.module('EDRLightbox').directive('panelCtrl', ['$http', '$rootScope', fun
         },
         templateUrl: 'components/panelControl.html',
         link: function ($scope) {
-            $http.get('json/panelData.js').success(function (data) {
+            $http.get('http://gbhalsing-compumatrice.github.io/json/panelData.js').success(function (data) {
                 console.log("sss " +JSON.stringify (data));
                 $scope.title =data.panel.Title;
                 $scope.descriptionF = data.panel.DescriptionF;
