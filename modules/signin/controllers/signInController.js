@@ -33,7 +33,7 @@
          if ($scope.loginForm.$valid) {
 
              // Verifying credentials from  json 
-             $http.get('json/Login_Sample.js').success(function (data) {
+             $http.get('scripts/json/Login_Sample.js').success(function (data) {
                  console.log("retrun data " + JSON.stringify(data))
                  console.log("Useremail " + $scope.useremail);
                  console.log("password " + $scope.password);
